@@ -1,22 +1,40 @@
 --Blades
-minetest.register_craftitem("wield3d:blades",{
-	description = "Blades",
+minetest.register_craftitem("wield3d:bladear",{
+	description = "Blade Arm Right",
 	inventory_image = "blades_inv.png",
 	wield_image = "blades_inv.png",
 })
+
+minetest.register_craftitem("wield3d:bladeal",{
+	description = "Blade Arm Left",
+	inventory_image = "blades_inv.png",
+	wield_image = "blades_inv.png",
+})
+
 
 --
 --Craft
 --
 
 minetest.register_craft({
-	output = 'wield3d:blades',
+	output = 'wield3d:bladear',
 	recipe = {
 		{'', 'default:steel_ingot', ''},
 		{'default:steel_ingot', 'group:stick', 'default:steel_ingot'},
 		{'', 'default:steel_ingot', ''},
 	}
 })
+
+
+minetest.register_craft({
+	output = 'wield3d:bladeal',
+	recipe = {
+		{'', 'default:steel_ingot', ''},
+		{'default:steel_ingot', 'group:stick', 'default:steel_ingot'},
+		{'', 'default:steel_ingot', ''},
+	}
+})
+
 
 
 wield3d = {}
@@ -30,12 +48,12 @@ local rx = -90
 local rz = 90
 
 wield3d.location = {
-    ["wield3d:blades"] = {bone, pos, {x=rx, y=135, z=rz}, scale},
+    ["wield3d:bladear"] = {"Arm_Right", pos, {x=rx, y=135, z=rz}, scale},
+    ["wield3d:bladeal"] = {"Arm_Left", pos, {x=rx, y=135, z=rz}, scale},
 }
 
 local has_wieldview = minetest.get_modpath("wieldview")
-local update_time_conf = minetest.setting_get("wield3d_update_time") or 1
-local update_time = tonumber(update_time_conf) or 1
+local update_time = 1
 local timer = 0
 local player_wielding = {}
 local location = {
